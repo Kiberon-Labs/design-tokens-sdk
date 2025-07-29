@@ -1,0 +1,56 @@
+{
+    "name": "@kiberon-labs/design-tokens-sdk",
+    "version": "1.0.0",
+    "description": "Design Tokens SDK for Kiberon Labs",
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        }
+    },
+    "types": "./dist/index.d.ts",
+    "main": "./dist/index.js",
+    "scripts": {
+        "changeset": "changeset",
+        "release": "npm run build && changeset publish",
+        "build": "tsc",
+        "build:clean": "rimraf dist && tsc",
+        "dev": "tsc --incremental --watch",
+        "check": "npx @biomejs/biome check .",
+        "fix": "npx @biomejs/biome check --write .",
+        "typedoc": "npx typedoc",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "generate": "openapi-generator-cli generate -i https:/kiberonlabs.com/api/openapi.json -g typescript-fetch  -o src --global-property=api,model   --additional-properties=importFileExtension=.js,useES6=true,sourceFolder=src"
+    },
+    "keywords": [
+        "sdk",
+        "design",
+        "tokens",
+        "automation"
+    ],
+    "author": "Kiberon Labs <support@kiberonlabs.com>",
+    "license": "MIT",
+    "files": [
+        "dist"
+    ],
+    "engines": {
+        "node": ">=20"
+    },
+    "devDependencies": {
+        "@changesets/cli": "^2.29.4",
+        "@kiberon-labs/config": "^2.0.0",
+        "@openapitools/openapi-generator-cli": "^2.21.4",
+        "@types/node": "^20.11.24",
+        "@vitest/coverage-v8": "^3.2.4",
+        "rimraf": "^5.0.5",
+        "typedoc-plugin-markdown": "^4.7.1",
+        "typescript": "^5.8.3",
+        "vitest": "^3.2.4"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
